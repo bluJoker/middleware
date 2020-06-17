@@ -1,6 +1,8 @@
 package com.debug.middleware.server.service.impl;
 
 import com.debug.middleware.server.dto.RedPacketDto;
+import com.debug.middleware.server.dto.RedPacketMQDto;
+import com.debug.middleware.server.rabbitmq.publisher.RedPacketPublisher;
 import com.debug.middleware.server.service.IRedPacketService;
 import com.debug.middleware.server.service.IRedService;
 import com.debug.middleware.server.utils.RedPacketUtil;
@@ -29,6 +31,9 @@ public class RedPacketService implements IRedPacketService {
 
     @Autowired
     private IRedService redService;
+
+    @Autowired
+    private RedPacketPublisher redPacketPublisher;
 
 
     /**
@@ -108,7 +113,15 @@ public class RedPacketService implements IRedPacketService {
 
                         //将红包金额返回给用户的同时，将抢红包记录入数据库与缓存
                         BigDecimal result = new BigDecimal(value.toString()).divide(new BigDecimal(100));
-                        redService.recordRobRedPacket(userId, redId, new BigDecimal(value.toString()));
+
+                        RedPacketMQDto redPacketMQDto = new RedPacketMQDto();
+                        redPacketMQDto.setUserId(userId);
+                        redPacketMQDto.setRedId(redId);
+                        redPacketMQDto.setAmount(new BigDecimal(value.toString()));
+
+                        // 使用rabbitmq异步记录抢红包明细到数据库中
+//                        redService.recordRobRedPacket(userId, redId, new BigDecimal(value.toString()));
+                        redPacketPublisher.sendMsg(redPacketMQDto);
 
                         valueOperations.set(redId + userId + ":rob", result, 24L, TimeUnit.HOURS);
 

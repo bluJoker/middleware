@@ -20,16 +20,16 @@ public class BasicConsumer {
     /**
      * 监听并消费队列中的消息-在这里采用单一容器工厂实例即可
      */
-    @RabbitListener(queues = "${mq.basic.info.queue.name}", containerFactory = "singleListenerContainer")
-    public void consumeMsg(@Payload byte[] msg) {
-        try {
-            String message = new String(msg, "utf-8");
-            log.info("基本消息模型-消费者-监听消费到消息：{} ", message);
-
-        } catch (Exception e) {
-            log.error("基本消息模型-消费者-发生异常：", e.fillInStackTrace());
-        }
-    }
+//    @RabbitListener(queues = "${mq.basic.info.queue.name}", containerFactory = "singleListenerContainer")
+//    public void consumeMsg(@Payload byte[] msg) {
+//        try {
+//            String message = new String(msg, "utf-8");
+//            log.info("基本消息模型-消费者-监听消费到消息：{} ", message);
+//
+//        } catch (Exception e) {
+//            log.error("基本消息模型-消费者-发生异常：", e.fillInStackTrace());
+//        }
+//    }
 
 
     @RabbitListener(queues = "${mq.object.info.queue.name}", containerFactory = "singleListenerContainer")

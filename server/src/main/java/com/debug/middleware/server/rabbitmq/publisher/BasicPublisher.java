@@ -27,34 +27,34 @@ public class BasicPublisher {
     @Autowired
     private Environment env;
 
-    public void sendMsg(String message) {
-        if (!Strings.isNullOrEmpty(message)) {
-
-
-            try {
-                rabbitTemplate.setMessageConverter(new Jackson2JsonMessageConverter());
-                rabbitTemplate.setExchange(env.getProperty("mq.basic.info.exchange.name"));
-
-                // rabbitTemplate.setExchange: local.middleware.mq.basic.info.exchange
-                log.info("rabbitTemplate.setExchange: {}", env.getProperty("mq.basic.info.exchange.name"));
-
-                rabbitTemplate.setRoutingKey(env.getProperty("mq.basic.info.routing.key.name"));
-
-                // rabbitTemplate.setRoutingKey: local.middleware.mq.basic.info.routing.key
-                log.info("rabbitTemplate.setRoutingKey: {}", env.getProperty("mq.basic.info.routing.key.name"));
-
-                Message msg = MessageBuilder.withBody(message.getBytes("utf-8")).build();
-
-                rabbitTemplate.convertAndSend(msg);
-
-                log.info("基本消息模型-生产者-发送消息：{}", message);
-            } catch (Exception e) {
-                log.error("基本消息模型-生产者-发送消息发生异常：{} ", message, e.fillInStackTrace());
-            }
-
-
-        }
-    }
+//    public void sendMsg(String message) {
+//        if (!Strings.isNullOrEmpty(message)) {
+//
+//
+//            try {
+//                rabbitTemplate.setMessageConverter(new Jackson2JsonMessageConverter());
+//                rabbitTemplate.setExchange(env.getProperty("mq.basic.info.exchange.name"));
+//
+//                // rabbitTemplate.setExchange: local.middleware.mq.basic.info.exchange
+//                log.info("rabbitTemplate.setExchange: {}", env.getProperty("mq.basic.info.exchange.name"));
+//
+//                rabbitTemplate.setRoutingKey(env.getProperty("mq.basic.info.routing.key.name"));
+//
+//                // rabbitTemplate.setRoutingKey: local.middleware.mq.basic.info.routing.key
+//                log.info("rabbitTemplate.setRoutingKey: {}", env.getProperty("mq.basic.info.routing.key.name"));
+//
+//                Message msg = MessageBuilder.withBody(message.getBytes("utf-8")).build();
+//
+//                rabbitTemplate.convertAndSend(msg);
+//
+//                log.info("基本消息模型-生产者-发送消息：{}", message);
+//            } catch (Exception e) {
+//                log.error("基本消息模型-生产者-发送消息发生异常：{} ", message, e.fillInStackTrace());
+//            }
+//
+//
+//        }
+//    }
 
     public void sendObjectMsg(Person p){
         if (p != null){

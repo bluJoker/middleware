@@ -28,7 +28,7 @@ public class BasicConsumerTest {
     public void consumeMsg() {
 
         String msg = "~~~~这是一串字符串消息~~~~";
-        basicPublisher.sendMsg(msg);
+//        basicPublisher.sendMsg(msg);
 
     }
 

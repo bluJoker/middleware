@@ -7,6 +7,7 @@ import com.debug.middleware.model.entity.RedDetail;
 import com.debug.middleware.model.entity.RedRecord;
 import com.debug.middleware.model.entity.RedRobRecord;
 import com.debug.middleware.server.dto.RedPacketDto;
+import com.debug.middleware.server.dto.RedPacketMQDto;
 import com.debug.middleware.server.service.IRedService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -84,13 +85,33 @@ public class RedService implements IRedService {
      */
     @Override
     @Async
-    public void recordRobRedPacket(Integer userId, String redId, BigDecimal amount) throws Exception {
+    public void recordRobRedPacket(RedPacketMQDto dto) throws Exception {
         RedRobRecord redRobRecord=new RedRobRecord();
-        redRobRecord.setUserId(userId);
-        redRobRecord.setRedPacket(redId);
-        redRobRecord.setAmount(amount);
+        redRobRecord.setUserId(dto.getUserId());
+        redRobRecord.setRedPacket(dto.getRedId());
+        redRobRecord.setAmount(dto.getAmount());
         redRobRecord.setRobTime(new Date());
 
         redRobRecordMapper.insertSelective(redRobRecord);
     }
+
+
+    /**
+     * 抢红包记录
+     * @param userId
+     * @param redId
+     * @param amount
+     * @throws Exception
+     */
+//    @Override
+//    @Async
+//    public void recordRobRedPacket(Integer userId, String redId, BigDecimal amount) throws Exception {
+//        RedRobRecord redRobRecord=new RedRobRecord();
+//        redRobRecord.setUserId(userId);
+//        redRobRecord.setRedPacket(redId);
+//        redRobRecord.setAmount(amount);
+//        redRobRecord.setRobTime(new Date());
+//        redRobRecordMapper.insertSelective(redRobRecord);
+//    }
+
 }

@@ -80,5 +80,41 @@
 
         </table>
 
+        <table tableName="user_order" domainObjectName="UserOrder"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+
+        </table>
+
+        <table tableName="mq_order" domainObjectName="MqOrder"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+
+        </table>
+
+        <table tableName="user_account" domainObjectName="UserAccount"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+
+        </table>
+
+        <table tableName="user_account_record" domainObjectName="UserAccountRecord"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+
+        </table>
+
     </context>
 </generatorConfiguration>

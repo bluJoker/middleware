@@ -48,6 +48,25 @@ mq:
       queue.name: ${mq.env}.middleware.mq.object.info.queue
       exchange.name: ${mq.env}.middleware.mq.object.info.exchange
       routing.key.name: ${mq.env}.middleware.mq.object.info.routing.key
+  dead:
+    queue.name: ${mq.env}.middleware.dead.queue
+    exchange.name: ${mq.env}.middleware.dead.exchange
+    routing.key.name: ${mq.env}.middleware.dead.routing.key
+  producer:
+    basic:
+      exchange.name: ${mq.env}.middleware.producer.basic.exchange
+      routing.key.name: ${mq.env}.middleware.producer.basic.routing.key
+    order:
+      exchange.name: ${mq.env}.middleware.order.basic.exchange
+      routing.key.name: ${mq.env}.middleware.order.basic.routing.key
+  consumer:
+    real.queue.name: ${mq.env}.middleware.consumer.real.queue
+    order.real.queue.name: ${mq.env}.middleware.consumer.order.real.queue
+  order:
+    dead:
+      queue.name: ${mq.env}.middleware.order.dead.queue
+      exchange.name: ${mq.env}.middleware.order.dead.exchange
+      routing.key.name: ${mq.env}.middleware.order.dead.routing.key
 
 #mybatis配置
 mybatis:
